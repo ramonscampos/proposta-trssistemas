@@ -81,23 +81,117 @@ const continuousWorkItems = [
   "Reuniões semanais e reuniões pontuais conforme necessidade e disponibilidade",
 ];
 
-const structuredPhaseItems = [
-  "Setup inicial do projeto",
-  "Stack inicial sugerida e validada tecnicamente",
-  "Arquitetura base do frontend",
-  "Autenticação e fluxo de sessão",
-  "RBAC e estrutura de permissões",
-  "Estrutura para planos e customizações por cliente",
-  "Primeiras telas ou features piloto",
-  "Documentação inicial para o time",
+const fixedScopeSummaryItems = [
+  "Arquitetura frontend completa para a nova plataforma web",
+  "Componentes base reutilizáveis, sem Storybook ou estrutura corporativa excessiva",
+  "Autenticação via JWT, com proteção de rotas e sessão autenticada",
+  "RBAC granular por rotina e ação",
+  "Estrutura para customizações por cliente",
+  "Client HTTP padronizado e integração preparada para API real",
+  "Módulo de referência (CRUD modelo) funcional com dados mocados",
+  "Documentação técnica para continuidade do time",
+  "Alinhamentos técnicos durante o projeto",
+];
+
+const fixedScopeGroups = [
+  {
+    title: "Arquitetura frontend",
+    items: [
+      "Definição da arquitetura principal da aplicação",
+      "Separação entre UI, serviços, regras e integração",
+      "Padronização de consumo da API",
+      "Padronização de formulários",
+      "Padronização de tratamento de erro",
+      "Padronização de loading e estados vazios",
+      "Estratégia de modularização",
+      "Estrutura preparada para crescimento contínuo",
+    ],
+  },
+  {
+    title: "Componentes base",
+    items: [
+      "Botões, inputs, selects, checkbox e radio",
+      "Modal/Dialog, tabs, cards e feedbacks visuais",
+      "Tabelas, paginação e estados de loading",
+      "Estados vazios e layout base interno",
+      "Base reutilizável e padronizada, sem Storybook",
+    ],
+  },
+  {
+    title: "Autenticação",
+    items: [
+      "Implementação do fluxo de autenticação via JWT",
+      "Login, logout e persistência segura da sessão",
+      "Proteção de rotas privadas",
+      "Tratamento de sessão expirada",
+      "Estrutura de usuário autenticado",
+      "Integração com API de autenticação",
+    ],
+  },
+  {
+    title: "RBAC e permissões",
+    items: [
+      "Estrutura base de roles/perfis e permissões",
+      "Permissões granulares por rotina e ação",
+      "Guards de rota e guards de componente",
+      "Controle visual e funcional baseado em permissão",
+      "Helpers/hooks reutilizáveis para validação de acesso",
+      "Documentação do modelo de permissões",
+    ],
+  },
+  {
+    title: "Customizações",
+    items: [
+      "Controle de acesso por feature",
+      "Helpers/hooks de feature access",
+      "Estrutura para customizações específicas por cliente",
+      "Separação entre regra global e cliente",
+      "Estratégia para evitar hardcodes espalhados",
+    ],
+  },
+  {
+    title: "Integração com API",
+    items: [
+      "Client HTTP padronizado",
+      "Tratamento centralizado de erro",
+      "Organização de serviços por domínio",
+      "Tipagem de requests/responses",
+      "Desenvolvimento com endpoints mocados quando a API real não estiver disponível",
+      "Integração com endpoints definidos no projeto quando disponíveis",
+    ],
+  },
+  {
+    title: "Módulo de referência",
+    items: [
+      "CRUD funcional de referência, sem dependência de backend real",
+      "Listagem, criação, edição, exclusão e visualização",
+      "Persistência mocada para demonstrar o fluxo completo",
+      "Busca, filtros e paginação quando aplicável",
+      "Validação de formulário, loading, erro e empty state",
+      "Aplicação prática de RBAC, planos e customizações",
+    ],
+  },
+  {
+    title: "Documentação e alinhamento",
+    items: [
+      "Documentação da arquitetura",
+      "Documentação da estrutura do projeto",
+      "Documentação dos padrões definidos",
+      "Guia para criação de novas funcionalidades",
+      "Guia de continuidade para o time",
+      "Reuniões técnicas de alinhamento e transferência de conhecimento",
+    ],
+  },
 ];
 
 const scopeLimits = [
+  "Não inclui implementação de funcionalidades reais específicas do ERP além do módulo de referência definido no escopo",
   "Não inclui manutenção, alteração ou evolução do sistema desktop atual",
   "Não inclui alterações diretas na API existente, exceto alinhamentos necessários para integração frontend",
   "Não inclui responsabilidade por infraestrutura, hospedagem, servidores ou pipelines existentes",
   "Não inclui gestão operacional do time interno",
   "Não inclui suporte em tempo real, plantão ou SLA de resposta imediata",
+  "Não inclui garantia de prazo sobre atividades dependentes da entrega ou ajuste de endpoints pela equipe da TRS",
   "Não substitui contrato jurídico, que deve ser formalizado caso a parceria avance",
 ];
 
@@ -429,30 +523,174 @@ export default function App() {
             viewport={{ once: true, amount: 0.25 }}
           >
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
-              Alternativa
+              Modelo alternativo
             </p>
             <h2 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
-              Fase inicial estruturada.
+              Escopo fechado para construção da base frontend.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-300">
-              Caso a TRS prefira iniciar com um escopo mais fechado, é possível definir uma primeira fase focada na criação da fundação técnica do frontend web. O valor deste modelo deve ser definido após alinhamento técnico do escopo inicial.
+              Para um modelo com escopo, valor e prazo definidos, a entrega proposta contempla a construção da fundação técnica da nova plataforma web, incluindo arquitetura, autenticação, permissões, planos, customizações, componentes base, documentação e um módulo de referência funcional.
             </p>
             <p className="mt-5 text-base leading-7 text-slate-400">
-              Este modelo funciona como uma porta de entrada. Ainda assim, para a evolução real da plataforma, a parceria contínua tende a ser mais adequada por permitir ajustes, aprendizado e tomada de decisão conforme o produto avança.
+              Este modelo oferece previsibilidade comercial. Em contrapartida, exige delimitação clara do que será entregue e do que ficará fora do projeto, já que o risco técnico da estimativa passa a ser absorvido dentro do escopo fechado.
             </p>
           </motion.div>
 
-          <Card>
-            <div className="grid gap-3">
-              {structuredPhaseItems.map((item) => (
-                <div key={item} className="flex gap-3 rounded-2xl bg-black/20 p-4">
-                  <ArrowUpRight className="mt-0.5 h-5 w-5 shrink-0 text-cyan-200" />
-                  <p className="leading-6 text-slate-300">{item}</p>
-                </div>
-              ))}
+          <Card className="border-cyan-300/20 bg-cyan-300/[0.06]">
+            <div>
+              <p className="text-sm uppercase tracking-[0.22em] text-cyan-200/80">
+                Como será entregue
+              </p>
+              <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+                Base técnica completa para evolução do frontend web.
+              </h3>
+              <p className="mt-4 text-sm leading-6 text-slate-300">
+                O foco desta proposta é deixar claro exatamente o que será construído: arquitetura, padrões, autenticação, permissões, planos, customizações, componentes base, módulo de referência e documentação para continuidade do time.
+              </p>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-5">
+              <p className="text-sm leading-6 text-slate-300">
+                O desenvolvimento poderá utilizar endpoints mocados enquanto a API real ainda não estiver disponível. A integração final com endpoints reais dependerá da entrega, estabilidade e compatibilidade das rotas fornecidas pela equipe da TRS.
+              </p>
             </div>
           </Card>
         </div>
+
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-5"
+        >
+          {fixedScopeSummaryItems.map((item) => (
+            <motion.div
+              key={item}
+              variants={fadeUp}
+              className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
+            >
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-cyan-200" />
+              <p className="text-sm leading-6 text-slate-300">{item}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] py-16 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10">
+          <SectionTitle
+            eyebrow="Escopo fechado"
+            title="O que será entregue no projeto fechado."
+            description="A entrega abaixo define a base técnica que permitirá ao time da TRS continuar a evolução da plataforma web com padrões claros, arquitetura consistente e um modelo funcional para seguir como referência."
+          />
+
+          <div className="mx-auto mt-8 max-w-4xl rounded-3xl border border-amber-300/15 bg-amber-300/[0.06] p-6">
+            <p className="text-sm leading-6 text-slate-300">
+              O layout do Figma será utilizado como referência visual e estrutural para criação dos componentes base, padrões de interface e módulo de referência. O Figma não representa, por si só, contrato de desenvolvimento integral das telas, e as telas do ERP não serão implementadas por completo neste escopo fechado.
+            </p>
+          </div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-14 grid gap-5 md:grid-cols-2"
+          >
+            {fixedScopeGroups.map((group) => (
+              <motion.div key={group.title} variants={fadeUp}>
+                <Card className="h-full">
+                  <div className="flex items-start gap-4">
+                    <div className="inline-flex rounded-2xl bg-cyan-500/10 p-3 shadow-inner shadow-cyan-500/20">
+                      <ArrowUpRight className="h-5 w-5 text-cyan-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{group.title}</h3>
+                      <div className="mt-5 space-y-3">
+                        {group.items.map((item) => (
+                          <div key={item} className="flex gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-200" />
+                            <p className="text-sm leading-6 text-slate-300">{item}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-32">
+        <SectionTitle
+          eyebrow="Prazo e investimento"
+          title="Estimativa de entrega e condições comerciais."
+          description="Depois de definido o escopo técnico, a proposta comercial abaixo considera a construção completa da base frontend descrita acima, com entrega de código, documentação e alinhamento técnico para continuidade."
+        />
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <Card className="border-cyan-300/20 bg-cyan-300/[0.06]">
+            <p className="text-sm uppercase tracking-[0.22em] text-cyan-200/80">
+              Prazo estimado
+            </p>
+            <p className="mt-3 text-4xl font-semibold text-white">
+              45 a 75
+              <span className="ml-2 text-lg font-normal text-slate-300">dias úteis</span>
+            </p>
+            <p className="mt-4 text-sm leading-6 text-slate-300">
+              Estimativa podendo ser concluída antes, conforme fluidez técnica, disponibilidade dos alinhamentos e evolução dos endpoints necessários.
+            </p>
+          </Card>
+
+          <Card className="border-cyan-300/20 bg-cyan-300/[0.06] lg:col-span-2">
+            <p className="text-sm uppercase tracking-[0.22em] text-cyan-200/80">
+              Forma de pagamento
+            </p>
+
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p className="text-2xl font-semibold text-white">30%</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  Na aprovação/início do projeto
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p className="text-2xl font-semibold text-white">Saldo</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  Restante parcelado durante o desenvolvimento
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p className="text-2xl font-semibold text-white">Quitação</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  Total até a entrega final do código e documentação
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <Card className="mt-6 border-cyan-300/25 bg-cyan-300/[0.08]">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.22em] text-cyan-200/80">
+                Valor total do projeto
+              </p>
+              <p className="mt-3 text-5xl font-semibold text-white">
+                R$ 52.000,00
+              </p>
+            </div>
+
+            <p className="max-w-xl text-sm leading-6 text-slate-300">
+              Valor fechado para o escopo descrito nesta proposta, considerando arquitetura, implementação da base frontend, módulo de referência funcional, documentação e alinhamento técnico.
+            </p>
+          </div>
+        </Card>
       </section>
 
       <section className="border-y border-white/10 bg-white/[0.025] py-16 md:py-32">
