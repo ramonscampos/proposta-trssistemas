@@ -682,7 +682,7 @@ export default function App() {
                 Valor total do projeto
               </p>
               <p className="mt-3 text-5xl font-semibold text-white">
-                R$ 52.000,00
+                R$ 42.000,00
               </p>
             </div>
 
