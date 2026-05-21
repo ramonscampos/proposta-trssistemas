@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import logoTrs from './assets/logo-trs-white.png';
 import rcWhite from './assets/rc-white.svg';
 import rc from './assets/rc.svg';
+import DetailsPage from './DetailsPage';
 import {
   ArrowUpRight,
   Blocks,
@@ -256,6 +257,22 @@ function ResoluteLogo() {
 }
 
 export default function App() {
+  const [currentHash, setCurrentHash] = React.useState(window.location.hash);
+
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  if (currentHash === '#/proposta-detalhada') {
+    return <DetailsPage />;
+  }
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#05070d] text-slate-100 font-sans">
       <div className="pointer-events-none fixed inset-0 -z-10">
@@ -266,7 +283,15 @@ export default function App() {
       </div>
 
       <header className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-8 sm:flex-row sm:justify-between md:px-10">
-        <ResoluteLogo />
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+          <ResoluteLogo />
+          <a
+            href="#/proposta-detalhada"
+            className="text-sm font-medium text-cyan-300/80 hover:text-cyan-200 transition-colors border-b border-cyan-300/10 hover:border-cyan-300/30 pb-0.5"
+          >
+            Ver Escopo & Cronograma Completo
+          </a>
+        </div>
         <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
           <div className="flex items-center gap-2">
             <img 
@@ -313,20 +338,29 @@ export default function App() {
 
           <motion.div
             variants={fadeUp}
-            className="mt-9 flex flex-wrap items-center gap-3 text-sm text-slate-300"
+            className="mt-9 flex flex-wrap items-center gap-4 text-sm"
           >
-            {[
-              "Migração gradual",
-              "Frontend moderno",
-              "Parceria contínua",
-            ].map((item) => (
-              <div
-                key={item}
-                className="inline-flex w-fit items-center rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 font-medium backdrop-blur-sm"
-              >
-                {item}
-              </div>
-            ))}
+            <a
+              href="#/proposta-detalhada"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#05070d] shadow-lg shadow-white/5 transition-all hover:bg-slate-100 hover:scale-105 hover:shadow-white/10"
+            >
+              Ver Escopo & Cronograma <ArrowUpRight className="h-4.5 w-4.5" />
+            </a>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {[
+                "Migração gradual",
+                "Frontend moderno",
+                "Parceria contínua",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="inline-flex w-fit items-center rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 font-medium text-slate-300 backdrop-blur-sm"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 
@@ -553,6 +587,15 @@ export default function App() {
               <p className="text-sm leading-6 text-slate-300">
                 O desenvolvimento poderá utilizar endpoints mocados enquanto a API real ainda não estiver disponível. A integração final com endpoints reais dependerá da entrega, estabilidade e compatibilidade das rotas fornecidas pela equipe da TRS.
               </p>
+            </div>
+
+            <div className="mt-6">
+              <a
+                href="#/proposta-detalhada"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3.5 font-semibold text-white transition-all hover:bg-white/[0.08] hover:border-white/20"
+              >
+                Ver Detalhes do Escopo & Checkpoints <ArrowUpRight className="h-4.5 w-4.5" />
+              </a>
             </div>
           </Card>
         </div>
