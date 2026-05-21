@@ -5,17 +5,14 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
-  Coins,
   Layers,
   Lock,
   Puzzle,
   Sliders,
   Database,
-  ShieldAlert,
   Terminal,
   Sparkles,
   BookOpen,
-  Users,
   ChevronDown
 } from 'lucide-react';
 import rc from './assets/rc.svg';
@@ -878,7 +875,7 @@ const escopoSections: EscopoSection[] = [
 ];
 
 export default function DetailsPage() {
-  const [activeTab, setActiveTab] = useState<'escopo' | 'cronograma' | 'diretrizes'>('escopo');
+  const [activeTab, setActiveTab] = useState<'escopo' | 'cronograma'>('escopo');
   const [activeEscopoSection, setActiveEscopoSection] = useState<string>('arquitetura');
   const [expandedCheckpoint, setExpandedCheckpoint] = useState<string | null>('checkpoint-1');
 
@@ -949,12 +946,11 @@ export default function DetailsPage() {
       {/* Primary Tab Navigation */}
       <section className="mx-auto max-w-2xl px-6 mb-12">
         <div className="flex rounded-full border border-white/10 bg-white/[0.02] p-1.5 backdrop-blur-sm relative">
-          {(['escopo', 'cronograma', 'diretrizes'] as const).map((tab) => {
+          {(['escopo', 'cronograma'] as const).map((tab) => {
             const isActive = activeTab === tab;
             const labels = {
               escopo: 'Escopo Detalhado',
-              cronograma: 'Cronograma de Entregas',
-              diretrizes: 'Termos & Investimento'
+              cronograma: 'Cronograma de Entregas'
             };
             return (
               <button
@@ -1211,114 +1207,6 @@ export default function DetailsPage() {
             </motion.div>
           )}
 
-          {activeTab === 'diretrizes' && (
-            <motion.div
-              key="diretrizes"
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={stagger}
-              className="space-y-10 max-w-5xl mx-auto"
-            >
-              {/* Financial Cards Grid */}
-              <motion.div variants={fadeUp} className="grid gap-6 md:grid-cols-3">
-                <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-xl backdrop-blur relative overflow-hidden">
-                  <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 h-24 w-24 rounded-full bg-white/5 blur-xl" />
-                  <span className="inline-flex rounded-xl bg-white/[0.04] border border-white/5 p-2.5 text-cyan-300 mb-4">
-                    <Coins className="h-5 w-5" />
-                  </span>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Valor do Projeto Fechado</p>
-                  <p className="text-3xl font-bold text-white mt-2">R$ 42.000,00</p>
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                    Valor total fixado cobrindo o desenvolvimento completo da base arquitetural, CRUD funcional e documentações descritas no escopo.
-                  </p>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-xl backdrop-blur relative overflow-hidden">
-                  <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 h-24 w-24 rounded-full bg-blue-500/5 blur-xl" />
-                  <span className="inline-flex rounded-xl bg-blue-500/10 p-2.5 text-blue-300 mb-4">
-                    <Clock className="h-5 w-5" />
-                  </span>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Parceria de Consultoria</p>
-                  <p className="text-3xl font-bold text-white mt-2">R$ 180<span className="text-sm font-normal text-slate-400"> / hora</span></p>
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                    Modelo de apoio contínuo assíncrono cobrado mensalmente, com carga semanal mínima de 10h e máxima de 35h sob demanda da TRS.
-                  </p>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 shadow-xl backdrop-blur relative overflow-hidden">
-                  <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 h-24 w-24 rounded-full bg-indigo-500/5 blur-xl" />
-                  <span className="inline-flex rounded-xl bg-indigo-500/10 p-2.5 text-indigo-300 mb-4">
-                    <Calendar className="h-5 w-5" />
-                  </span>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Condições de Pagamento</p>
-                  <p className="text-3xl font-bold text-white mt-2">30% <span className="text-base font-normal text-slate-400">Início</span></p>
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                    Sendo 30% como sinal na aprovação do projeto, saldo parcelado ao longo do desenvolvimento e quitação na entrega final.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Responsibilities & Limits */}
-              <motion.div variants={fadeUp} className="grid gap-6 lg:grid-cols-2">
-                {/* Limites do escopo */}
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-8">
-                  <div className="flex items-center gap-3.5 pb-5 border-b border-white/5 mb-6">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10 text-rose-300 shadow-inner">
-                      <ShieldAlert className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-bold text-white">Limitações de Escopo</h3>
-                      <p className="text-xs text-slate-500">O que explicitamente NÃO está incluso nesta proposta</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3.5">
-                    {[
-                      'Desenvolvimento, manutenção ou otimização de APIs e rotinas no backend (Delphi, C#, etc.)',
-                      'Configuração ou gestão de servidores de banco de dados e infraestrutura corporativa na nuvem',
-                      'Desenvolvimento de funcionalidades de telas do ERP além do cadastro de Módulo de Referência funcional de gabarito',
-                      'Suporte sob regime de plantão de emergência (SLA) de tempo real assíncrono',
-                      'Atividades que fiquem travadas por indisponibilidade de endpoints por parte do time técnico da TRS'
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex gap-3 bg-black/25 border border-white/5 rounded-2xl p-4">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-400" />
-                        <p className="text-sm leading-relaxed text-slate-300">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Forma de trabalho */}
-                <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-8">
-                  <div className="flex items-center gap-3.5 pb-5 border-b border-white/5 mb-6">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-300 shadow-inner">
-                      <Users className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-bold text-white">Forma de Trabalho</h3>
-                      <p className="text-xs text-slate-500">Como a parceria e comunicação serão operacionalizadas</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3.5">
-                    {[
-                      'Atuação assíncrona focada em entregas navegáveis de alto valor de UI e arquitetura',
-                      'Canal de comunicação aberto no WhatsApp para esclarecimentos diários e dúvidas rápidas',
-                      'Reuniões de checkpoint semanais ou síncronas rápidas quando o cenário técnico exigir',
-                      'Entrega de código 100% documentado através de commits organizados e branches explicadas',
-                      'Handoff final de código e repasse direto com o programador responsável por assumir a plataforma'
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex gap-3 bg-[#080b12] border border-white/5 rounded-2xl p-4">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-                        <p className="text-sm leading-relaxed text-slate-300">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
         </AnimatePresence>
       </div>
 
